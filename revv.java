@@ -1,34 +1,93 @@
 import java.util.*;
-class array
+class node
 {
-	void reva(int a[],int n)
-	{
-		int i,j=0;
-		int[] b=new int[n];
-		for(i=n-1;i>=0;i--)
-		{
-        b[j]=a[i];
-        j++;
-		}
-		for(i=0;i<n;i++)
-		{
-			System.out.print(b[i]);
-		}
-	}
+ node head = null;
+ int data;
+ node next;
+public node()
+{
+ this.data=0;
+ this.next= null;
 }
-class rev
+public node(int data1)
 {
-	public static void main(String[] args)
-	{
-		Scanner s=new Scanner(System.in);
-		int n,i;
-		n=s.nextInt();
-		int[] a=new int[n];
-		for(i=0;i<n;i++)
-		{
-			a[i]=s.nextInt();
-		}
-		array x=new array();
-		x.reva(a,n);
-	}
+ this.data=data1;
+ this.next= null;
+}
+
+public node add(int data)
+{
+  node a = new node(data);
+  if(head == null)
+{
+head=a;
+}
+else
+{
+ node temp = head;
+   while(temp.next!=null) //tb tak chlega jb tk use next me null nahi mil jata.
+{
+ temp=temp.next;
+}
+
+temp.next=a;
+}
+return head;
+}
+public node reverse(node d1)
+{
+   node a1 = new node();
+   node prev=null;
+   node curr=d1;
+   node next=null;
+   while(curr!=null)
+   {
+   	 next=curr.next;
+   	 curr.next=prev;
+   	 prev=curr;
+   	 curr=next;
+
+   }
+   d1=prev;
+   return d1;
+}
+
+public void printlist(node head)
+{
+ node temp=head;
+while(temp!=null)
+{
+
+
+ System.out.print(temp.data);
+ System.out.println();
+temp=temp.next;
+}
+}
+}
+
+public class revli
+{
+public static void main(String[] args)
+{
+node l = new node();
+ Scanner in = new Scanner(System.in);
+ int d;
+ d = in.nextInt();
+ node h=null;
+ while(d!=0)
+{
+int n=in.nextInt();
+ h=l.add(n);
+ d--;
+}
+ System.out.println("Answer is");
+
+//l.printlist(h);
+ h =l.reverse(h);
+  l.printlist(h);
+
+
+
+}
 }
